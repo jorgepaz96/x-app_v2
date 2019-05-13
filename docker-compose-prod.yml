@@ -5,15 +5,13 @@ services:
   users:
     build:
       context: ./services/users
-      dockerfile: Dockerfile-dev
-    volumes:
-      - './services/users:/usr/src/app'
+      dockerfile: Dockerfile-prod
     ports:
       - 5001:5000
     environment:
       #- FLASK_APP=project/__init__.py
-      - FLASK_ENV=development
-      - APP_SETTINGS=project.config.DevelopmentConfig  # nuevo
+      - FLASK_ENV=production
+      - APP_SETTINGS=project.config.ProductionConfig  # nuevo
       - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_dev  # nuevo
       - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/users_test  # nuevo
     depends_on:  # nuevo
